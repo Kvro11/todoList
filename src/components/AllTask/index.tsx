@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import { fetchTodos } from "../../state/todoSlice";
@@ -9,9 +9,7 @@ import TaskList from "../TaskList";
 
 const AllTask = () => {
   const { todos } = useSelector((state: RootState) => state.todo);
-  const { userData } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const { setTaskToEdit, setAddTask } = useOutletContext<any>();
 
   useEffect(() => {
