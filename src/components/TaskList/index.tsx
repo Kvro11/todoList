@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { deleteTodo, updateTodo } from "../../state/todoSlice";
 import { AppDispatch } from "../../state/store";
 import Error from "../Error";
+import useViewport from "../useViewport";
 
 import { IoTrashOutline } from "react-icons/io5";
 import { IoCalendarOutline } from "react-icons/io5";
@@ -16,8 +17,14 @@ import { FcHighPriority } from "react-icons/fc";
 import { FcMediumPriority } from "react-icons/fc";
 import { FcLowPriority } from "react-icons/fc";
 
+enum TitleLength {
+  mobile = 12,
+  desktop = 18,
+}
+
 const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
   const dispatch = useDispatch<AppDispatch>();
+  const isMobile = useViewport();
 
   const importance: any = {
     high: <FcHighPriority />,
@@ -56,7 +63,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
       <div className="w-full p-2 sm:p-12">
         <ToastContainer />
         <div className="flex items-end gap-2 mb-7 font-custom-exo">
-          <h1 className="font-black text-2xl sm:text-4xl text-primary-blue ">
+          <h1 className="font-black text-[1.4rem] sm:text-4xl text-primary-blue ">
             {title}
           </h1>
           <span className="text-xl sm:text-3xl font-semibold text-custom-gray">
@@ -81,7 +88,8 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
                   >
                     {task.title}
                   </span>
-                  {task.title.length > 18 && (
+                  {task.title.length >
+                    (isMobile ? TitleLength.mobile : TitleLength.desktop) && (
                     <div
                       className="absolute left-0 top-full mt-1 w-max max-w-xs bg-gray-800 
                     text-white text-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 
