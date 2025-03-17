@@ -74,7 +74,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
               flex flex-col gap-3 sm:gap-5 shadow-custom-shadow"
             >
               <div className="flex items-center justify-between">
-                <div className="relative group w-[80%]">
+                <div className="relative group w-[70%] sm:w-[80%]">
                   <span
                     className="font-bold text-xl sm:text-2xl text-custom-black-200 
                       truncate block"
