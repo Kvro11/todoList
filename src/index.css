@@ -7,13 +7,30 @@ body {
 }
 
 @theme {
-  --color-primary-blue: #03015d;
+  --color-primary-blue: #002147;
   --color-custom-red: #e32636;
   --color-custom-black-200: #535353;
   --color-custom-black-100: #4e4d4d;
-  --color-custom-gray: #c4c4c4;
+  --color-custom-gray: #c9c9c9;
+  --color-linear-blue-100: #30bddc;
+  --color-linear-blue-200: #1e94e9;
+  /* --color-blue-gradient: linear-gradient(#30bddc, #1e94e9); */
 
   --shadow-custom-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   --font-custom-exo: "Exo", sans-serif;
 }
+
+@layer base {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html,
+  body {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+}
+
+/* #03015d */

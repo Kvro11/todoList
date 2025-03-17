@@ -1,41 +1,58 @@
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+
+import { addTodo, updateTodo } from "../../state/todoSlice";
+import { AppDispatch } from "../../state/store";
 
 import { IoClose } from "react-icons/io5";
+import { Todo } from "../../types/todoTypes";
+import { toast } from "react-toastify";
 
-const NewTaskModal = ({
-  setAddTask,
-  taskToEdit,
-  setTaskList,
-  setTaskToEdit,
-}: any) => {
+const NewTaskModal = ({ setAddTask, taskToEdit, setTaskToEdit }: any) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [importance, setImportance] = useState("");
 
-  const handleTask = () => {
-    if (taskToEdit) {
-      setTaskList((prevList: any) =>
-        prevList.map((task: any) =>
-          task.id === taskToEdit.id
-            ? { ...task, date, title, desc: description, priority: importance }
-            : task
-        )
-      );
-    } else {
-      setTaskList((prevList: any) => [
-        ...prevList,
-        {
-          id: uuidv4(),
-          date,
-          title,
-          desc: description,
-          priority: importance,
-          isComplete: false,
-        },
-      ]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleTask = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!title.trim()) {
+      alert("Task title cannot be empty!");
+      return;
     }
+
+    const newTask: Partial<Todo> = {
+      date,
+      title: title.trim(),
+      desc: description.trim(),
+      priority: importance || "Normal", // Set a default priority if empty
+      isComplete: false,
+    };
+
+    if (taskToEdit) {
+      dispatch(updateTodo({ id: taskToEdit.id, ...newTask }));
+      toast.success("Task has been updated", {
+        position: "top-center",
+      });
+    } else {
+      dispatch(addTodo(newTask));
+      toast.success("New task has been added", {
+        position: "top-center",
+      });
+    }
+
+    setDate("");
+    setTitle("");
+    setDescription("");
+    setImportance("");
+    setAddTask(false);
+    setTaskToEdit(null);
+  };
+
+  const handleCloseModal = () => {
     setAddTask(false);
     setTaskToEdit(null);
   };
@@ -64,7 +81,7 @@ const NewTaskModal = ({
         <button
           className="cursor-pointer transition ease-in-out duration-200 hover:scale-90 
               hover:text-custom-red"
-          onClick={() => setAddTask(false)}
+          onClick={handleCloseModal}
         >
           <IoClose />
         </button>
