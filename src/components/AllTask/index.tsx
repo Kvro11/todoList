@@ -18,14 +18,6 @@ const AllTask = () => {
     dispatch(fetchTodos());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!userData?.id) {
-      navigate("/signIn");
-    } else {
-      navigate("/home");
-    }
-  }, [userData]);
-
   return (
     <TaskList
       title={"Task List"}

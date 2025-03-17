@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "./state/store";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./state/store";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Home from "./components/Home";
 import AllTask from "./components/AllTask";
@@ -16,6 +21,7 @@ const App = () => {
   const [addTask, setAddTask] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const dispatch = useDispatch<AppDispatch>();
+  const { userData } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const storedData = localStorage.getItem("user");
@@ -34,7 +40,11 @@ const App = () => {
           <Route
             path="/home"
             element={
-              <Home setAddTask={setAddTask} setTaskToEdit={setTaskToEdit} />
+              userData ? (
+                <Home setAddTask={setAddTask} setTaskToEdit={setTaskToEdit} />
+              ) : (
+                <Navigate to="/signIn" />
+              )
             }
           >
             <Route index element={<AllTask />} />

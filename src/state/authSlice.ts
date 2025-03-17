@@ -153,7 +153,7 @@ export const socialSignIn = createAsyncThunk(
 
       localStorage.setItem("user", JSON.stringify(userData));
 
-      dispatch(fetchTodos()); //Fetch todos after social login
+      await dispatch(fetchTodos());
       return userData;
     } catch (error: any) {
       console.error("Error:", error.message);
@@ -201,12 +201,26 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.error = null;
+
+        // Use the same userData that was stored in localStorage
+        state.userData = action.payload;
       })
 
       .addCase(signUp.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.error = null;
+        // Use the same userData that was stored in localStorage
+        state.userData = action.payload;
+      })
+
+      .addCase(socialSignIn.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.error = null;
+
+        // Use the same userData that was stored in localStorage
+        state.userData = action.payload;
       })
 
       .addCase(logOut.fulfilled, (state) => {
