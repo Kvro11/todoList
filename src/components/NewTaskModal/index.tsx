@@ -74,10 +74,10 @@ const NewTaskModal = ({ setAddTask, taskToEdit, setTaskToEdit }: any) => {
   return (
     <form
       onSubmit={handleTask}
-      className="fixed top-[8%] left-[45%] w-[90%] sm:w-[27rem] h-fit bg-[whitesmoke] p-10 rounded-lg
-        shadow-lg shadow-black/20 flex flex-col gap-8 font-custom-exo"
+      className="fixed top-[11%] sm:top-[8%] left-[5%] sm:left-[45%] w-[90%] sm:w-[27rem] h-fit bg-[whitesmoke] 
+      p-5 sm:p-10 rounded-lg shadow-lg shadow-black/20 flex flex-col gap-5 sm:gap-8 font-custom-exo"
     >
-      <div className="flex justify-end text-3xl -m-5">
+      <div className="flex justify-end text-3xl -m-2 sm:-m-5">
         <button
           className="cursor-pointer transition ease-in-out duration-200 hover:scale-90 
               hover:text-custom-red"

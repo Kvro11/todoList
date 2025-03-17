@@ -43,7 +43,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="relative w-full min-h-screen bg-[#f5f5f5] flex flex-col sm:flex-row ">
+      <div className="relative w-ful">
         <Routes>
           <Route index element={<SignIn />} />
           <Route path="/signIn" element={<SignIn />} />

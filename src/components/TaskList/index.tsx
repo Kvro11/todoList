@@ -53,11 +53,13 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
 
   return (
     <>
-      <div className="w-full p-3 sm:p-12">
+      <div className="w-full p-2 sm:p-12">
         <ToastContainer />
         <div className="flex items-end gap-2 mb-7 font-custom-exo">
-          <h1 className="font-black text-4xl text-primary-blue ">{title}</h1>
-          <span className="text-2xl sm:text-3xl font-semibold text-custom-gray">
+          <h1 className="font-black text-2xl sm:text-4xl text-primary-blue ">
+            {title}
+          </h1>
+          <span className="text-xl sm:text-3xl font-semibold text-custom-gray">
             ({todos?.length ?? "0"})
           </span>
         </div>
@@ -138,7 +140,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
           {title === "Task List" && (
             <div
               className="h-full min-h-[250px] sm:min-h-[350px] flex justify-center items-center 
-          shadow-custom-shadow transition ease-in-out hover:scale-95 rounded-lg"
+                shadow-custom-shadow transition ease-in-out hover:scale-95 rounded-lg"
               onClick={() => setAddTask(true)}
             >
               <IoAdd className="text-8xl text-custom-black-100" />
