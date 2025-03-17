@@ -91,7 +91,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
                   {task.title.length >
                     (isMobile ? TitleLength.mobile : TitleLength.desktop) && (
                     <div
-                      className="absolute left-0 top-full mt-1 w-max max-w-xs bg-gray-800 
+                      className="absolute left-0 top-full mt-1 w-full sm:w-max max-w-xs bg-gray-800 
                     text-white text-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 
                       transition-opacity"
                     >
