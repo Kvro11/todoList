@@ -5,9 +5,10 @@ import { useOutletContext } from "react-router-dom";
 import { RootState } from "../../state/store";
 import { Todo } from "../../types/todoTypes";
 import TaskList from "../TaskList";
+import Loading from "../Loading";
 
 const InProgress = () => {
-  const { todos } = useSelector((state: RootState) => state.todo);
+  const { todos, isLoading } = useSelector((state: RootState) => state.todo);
   const [inProgressTask, setInProgressTask] = useState<Todo[]>([]);
 
   const { setTaskToEdit, setAddTask } = useOutletContext<any>();
@@ -17,15 +18,16 @@ const InProgress = () => {
     setInProgressTask(inProgressTask);
   }, [todos]);
 
-  console.log({ inProgressTask });
-
   return (
-    <TaskList
-      todos={inProgressTask}
-      setAddTask={setAddTask}
-      setTaskToEdit={setTaskToEdit}
-      title={"In-progress Task"}
-    />
+    <>
+      {isLoading && <Loading />}
+      <TaskList
+        todos={inProgressTask}
+        setAddTask={setAddTask}
+        setTaskToEdit={setTaskToEdit}
+        title={"In-progress Task"}
+      />
+    </>
   );
 };
 

@@ -5,9 +5,10 @@ import { useOutletContext } from "react-router-dom";
 import { RootState } from "../../state/store";
 import { Todo } from "../../types/todoTypes";
 import TaskList from "../TaskList";
+import Loading from "../Loading";
 
 const Completed = () => {
-  const { todos } = useSelector((state: RootState) => state.todo);
+  const { todos, isLoading } = useSelector((state: RootState) => state.todo);
   const [completedTask, setCompletedTask] = useState<Todo[]>([]);
   const { setTaskToEdit, setAddTask } = useOutletContext<any>();
 
@@ -16,12 +17,15 @@ const Completed = () => {
     setCompletedTask(tasks);
   }, [todos]);
   return (
-    <TaskList
-      title={"Completed Task"}
-      todos={completedTask}
-      setAddTask={setAddTask}
-      setTaskToEdit={setTaskToEdit}
-    />
+    <>
+      {isLoading && <Loading />}
+      <TaskList
+        title={"Completed Task"}
+        todos={completedTask}
+        setAddTask={setAddTask}
+        setTaskToEdit={setTaskToEdit}
+      />
+    </>
   );
 };
 

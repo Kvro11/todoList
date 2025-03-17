@@ -119,16 +119,22 @@ const todoSlice = createSlice({
       .addCase(fetchTodos.pending, (state) => {
         state.isLoading = true;
       })
+      .addCase(addTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+
       .addCase(fetchTodos.fulfilled, (state, action) => {
         state.isLoading = false;
         state.todos = action.payload;
       })
-      .addCase(fetchTodos.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message ?? "Failed to fetch todos";
-      })
-
       .addCase(updateTodo.fulfilled, (state, action) => {
+        state.isLoading = false;
         const index = state.todos.findIndex(
           (todo) => todo.id === action.payload.id
         );
@@ -136,13 +142,18 @@ const todoSlice = createSlice({
           state.todos[index] = { ...state.todos[index], ...action.payload }; // ✅ Merge new values
         }
       })
-
       .addCase(addTodo.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.todos.push(action.payload);
       })
-
       .addCase(deleteTodo.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      })
+
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message ?? "Failed to fetch todos";
       });
   },
 });

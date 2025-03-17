@@ -56,7 +56,6 @@ export const signIn = createAsyncThunk(
       dispatch(fetchTodos()); //Fetch todos after login
       return userData;
     } catch (error: any) {
-      console.log("Error: ", error.message);
       let errorMessage = "Sign-in failed. Please try again."; // Default message
 
       if (error.code === "auth/invalid-credential") {
@@ -156,8 +155,6 @@ export const socialSignIn = createAsyncThunk(
       await dispatch(fetchTodos());
       return userData;
     } catch (error: any) {
-      console.error("Error:", error.message);
-
       const errorMessages: Record<string, string> = {
         "auth/invalid-credential":
           "No account found with this email. Please sign up.",
@@ -194,6 +191,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(signUp.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(socialSignIn.pending, (state) => {
         state.isLoading = true;
       })
 

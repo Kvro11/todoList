@@ -16,12 +16,13 @@ import NewTaskModal from "./components/NewTaskModal";
 import SignUp from "./components/SignUp/index.";
 import SignIn from "./components/SignIn";
 import { setUser } from "./state/authSlice";
+import Loading from "./components/Loading";
 
 const App = () => {
   const [addTask, setAddTask] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const dispatch = useDispatch<AppDispatch>();
-  const { userData } = useSelector((state: RootState) => state.auth);
+  const { userData, isLoading } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const storedData = localStorage.getItem("user");
@@ -29,6 +30,18 @@ const App = () => {
       dispatch(setUser(JSON.parse(storedData))); //Update Redux only if needed
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (addTask) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = ""; // Always restore scroll when component unmounts
+    };
+  }, [addTask]);
 
   return (
     <Router>

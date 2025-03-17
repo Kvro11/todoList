@@ -31,7 +31,6 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
   };
 
   const handleEdit = (id: string) => {
-    console.log("Clicked");
     const taskToEdit = todos.find((task: any) => task.id === id);
     if (todos) {
       setTaskToEdit(taskToEdit); // Now it's an object, not an array
@@ -80,13 +79,15 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
                   >
                     {task.title}
                   </span>
-                  <div
-                    className="absolute left-0 top-full mt-1 w-max max-w-xs bg-gray-800 
+                  {task.title.length > 18 && (
+                    <div
+                      className="absolute left-0 top-full mt-1 w-max max-w-xs bg-gray-800 
                     text-white text-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 
                       transition-opacity"
-                  >
-                    {task.title}
-                  </div>
+                    >
+                      {task.title}
+                    </div>
+                  )}
                 </div>
 
                 <div
