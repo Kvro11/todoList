@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "./state/store";
-import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "./state/store";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// import Content from "./components/AllTask";
-// import Header from "./components/NavBar";
 import Home from "./components/Home";
 import AllTask from "./components/AllTask";
 import InProgress from "./components/InProgress";
