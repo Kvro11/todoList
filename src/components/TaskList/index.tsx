@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,6 +25,8 @@ enum TitleLength {
 
 const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [priority, setPriority] = useState("all");
+  const [filteredTodos, setFilteredTodos] = useState(todos);
   const isMobile = useViewport();
 
   const importance: any = {
@@ -58,23 +61,46 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
     }
   };
 
+  useEffect(() => {
+    const newTodo = todos.filter((todo: { priority: string }) => {
+      return priority === "all" || todo.priority === priority;
+    });
+
+    setFilteredTodos(newTodo);
+  }, [todos, priority]);
+
   return (
     <>
       <div className="w-full p-2 sm:p-12">
         <ToastContainer />
-        <div className="flex items-end gap-2 mb-7 font-custom-exo">
-          <h1 className="font-black text-[1.4rem] sm:text-4xl text-primary-blue ">
-            {title}
-          </h1>
-          <span className="text-xl sm:text-3xl font-semibold text-custom-gray">
-            ({todos?.length ?? "0"})
-          </span>
+        <div className="flex flex-col min-[500px]:flex-row sm:flex-row items-center justify-between mb-7 font-custom-exo">
+          <div className="flex gap-2 items-end">
+            <h1 className="font-black text-[1.4rem] sm:text-4xl text-primary-blue ">
+              {title}
+            </h1>
+            <span className="text-xl sm:text-2xl font-semibold text-custom-gray">
+              ({filteredTodos?.length ?? "0"})
+            </span>
+          </div>
+          <div>
+            <select
+              className="w-fit border-0 border-b-2 p-2 border-gray-400 focus:border-b-primary-blue
+                outline-none text-custom-black-100"
+              onChange={(e) => setPriority(e.target.value)}
+              value={priority}
+            >
+              <option value="all">All Task</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
         </div>
         <div
           className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] 
             min-[500px]:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 "
         >
-          {todos?.map((task: any) => (
+          {filteredTodos?.map((task: any) => (
             <div
               key={task.id}
               className="h-full min-h-[250px] sm:min-h-[350px] p-3 sm:p-5 rounded-lg
@@ -157,7 +183,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
         </div>
       </div>
 
-      {todos?.length === 0 && title !== "Task List" && <Error />}
+      {filteredTodos?.length === 0 && title !== "Task List" && <Error />}
     </>
   );
 };
