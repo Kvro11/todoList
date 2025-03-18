@@ -7,7 +7,7 @@ const Loading = () => {
           inset-0 bg-[rgba(0,0,0,0.2)]"
     >
       <img
-        className="fixed top-[40%] sm:top-[50%] left-[30%] sm:left-[50%]"
+        className="fixed top-[40%] left-[50%] translate-x-[-50%]"
         src={loading}
         alt="Loading"
       />

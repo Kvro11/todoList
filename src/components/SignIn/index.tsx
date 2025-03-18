@@ -90,7 +90,8 @@ const SignIn = () => {
         >
           <img src={signInSvg} className="sm:w-[90%] mr-5" />
         </div>
-        <div className="w-[80%] sm:w-[27%] h-fit order-2 sm:order-1">
+
+        <div className="w-[80%] min-[500px]:w-[70%] sm:w-[27%] h-fit order-2 sm:order-1">
           <form
             onSubmit={handleSignIn}
             className="h-full flex flex-col gap-5 p-5 sm:p-8 bg-white 

@@ -72,7 +72,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
         </div>
         <div
           className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] 
-            sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 "
+            min-[500px]:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 "
         >
           {todos?.map((task: any) => (
             <div

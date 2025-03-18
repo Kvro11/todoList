@@ -18,6 +18,18 @@ const InProgress = () => {
     setInProgressTask(inProgressTask);
   }, [todos]);
 
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = ""; // Always restore scroll when component unmounts
+    };
+  }, [isLoading]);
+
   return (
     <>
       {isLoading && <Loading />}
