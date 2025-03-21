@@ -25,6 +25,12 @@ const SignUp = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!repeatPassword || repeatPassword.trim() !== password.trim()) {
+      toast.error("Password do not match", { position: "top-center" });
+      return;
+    }
+
     const resultAction = await dispatch(signUp({ email, password, username }));
 
     if (signUp.fulfilled.match(resultAction)) {
