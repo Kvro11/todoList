@@ -43,7 +43,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="relative w-ful">
+      <div className="relative w-full">
         <Routes>
           <Route index element={<SignIn />} />
           <Route path="/signIn" element={<SignIn />} />
