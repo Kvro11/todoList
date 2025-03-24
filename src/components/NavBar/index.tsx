@@ -76,9 +76,9 @@ const NavBar = () => {
   return (
     <div
       className="navbar fixed w-full sm:w-[18vw] h-[10vh] sm:h-full flex sm:flex-col items-center
-      px-5 sm:px-0 sm:pt-10 bg-primary-blue"
+      justify-between px-5 sm:px-0 sm:pt-10 bg-primary-blue z-50"
     >
-      <div className="w-[90%] flex sm:flex-col items-center gap-5 sm:pb-8 text-white sm:border-b-2">
+      <div className="sm:w-[90%] flex sm:flex-col items-center gap-5 sm:pb-8 text-white sm:border-b-2">
         <div className="w-fit rounded-full text-4xl sm:text-6xl border-2">
           <GiDwarfFace />
         </div>
@@ -86,9 +86,8 @@ const NavBar = () => {
       </div>
       <button
         onClick={() => setNavOpen(true)}
-        className={`${showMenuIcon} ${
-          navOpen ? "hidden" : "block"
-        } text-3xl text-white`}
+        className={`text-3xl text-white 
+          ${showMenuIcon} ${navOpen ? "hidden" : "block"}`}
       >
         <RxHamburgerMenu />
       </button>
@@ -100,11 +99,12 @@ const NavBar = () => {
             exit={isMobile ? { right: "-100%" } : {}}
             transition={isMobile ? { ease: "easeOut", duration: 0.5 } : {}}
             className="absolute sm:static w-full h-screen sm:h-fit flex flex-col justify-center
-          items-center sm:items-start text-white sm:mt-20 sm:pl-5 font-black bg-primary-blue/90 z-50"
+             items-center sm:items-start text-custom-black-200 sm:text-white sm:mt-20 sm:pl-5 
+             font-black bg-primary-blue"
           >
             <button onClick={() => setNavOpen(false)}>
               <IoClose
-                className={`${showMenuIcon} absolute top-6 right-6 text-3xl text-white ${
+                className={`${showMenuIcon} absolute top-6 right-6 text-3xl ${
                   navOpen ? "block" : "hidden"
                 }`}
               />
@@ -117,23 +117,24 @@ const NavBar = () => {
                   end={index === 0}
                   onClick={handleNavLink}
                   className={({ isActive }) =>
-                    `w-fit sm:w-full flex gap-5 items-center p-3 sm:p-2 sm:pr-0 
+                    `w-fit sm:w-full flex gap-5 items-center py-3 pr-1 sm:p-2 sm:pr-0 
                    sm:rounded-l-2xl text-4xl transition-all duration-300 ${
                      isActive
-                       ? "sm:bg-white text-white sm:text-primary-blue border-b-2 sm:border-0"
+                       ? "sm:bg-white text-white sm:text-primary-blue border-0"
                        : "sm:hover:bg-white sm:hover:text-primary-blue hover:text-white"
                    }`
                   }
                 >
                   {icon}
-                  <span className="text-2xl">{name}</span>
+                  <span className="text-xl sm:text-2xl">{name}</span>
                 </NavLink>
               ))}
             </ul>
             <div className="mt-20">
               <button
                 onClick={handleLogout}
-                className="flex gap-5 text-2xl items-center cursor-pointer"
+                className="flex gap-5 text-xl items-center -ml-10 sm:-ml-0 sm:text-2xl cursor-pointer
+                transition-transform duration-200 ease-in-out hover:scale-90 hover:text-white"
               >
                 <SlLogout className="text-4xl" />
                 Logout
