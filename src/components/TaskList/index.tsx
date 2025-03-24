@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { deleteTodo, updateTodo } from "../../state/todoSlice";
+import {
+  AddTask,
+  deleteTodo,
+  EditTask,
+  updateTodo,
+} from "../../state/todoSlice";
 import { AppDispatch } from "../../state/store";
 import Error from "../Error";
 import useViewport from "../useViewport";
@@ -23,7 +28,7 @@ enum TitleLength {
   desktop = 18,
 }
 
-const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
+const TaskList = ({ todos, title }: any) => {
   const dispatch = useDispatch<AppDispatch>();
   const [priority, setPriority] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState(todos);
@@ -43,10 +48,10 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
   const handleEdit = (id: string) => {
     const taskToEdit = todos.find((task: any) => task.id === id);
     if (todos) {
-      setTaskToEdit(taskToEdit); // Now it's an object, not an array
+      dispatch(EditTask(taskToEdit)); // Now it's an object, not an array
     }
 
-    setAddTask(true);
+    dispatch(AddTask(true));
   };
 
   const handleUpdate = (id: string, isComplete: boolean) => {
@@ -175,7 +180,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
             <div
               className="h-full min-h-[250px] sm:min-h-[350px] flex justify-center items-center 
                 shadow-custom-shadow transition ease-in-out hover:scale-95 rounded-lg"
-              onClick={() => setAddTask(true)}
+              onClick={() => dispatch(AddTask(true))}
             >
               <IoAdd className="text-8xl text-custom-black-100" />
             </div>

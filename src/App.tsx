@@ -17,10 +17,9 @@ import SignUp from "./components/SignUp/index.";
 import SignIn from "./components/SignIn";
 import { setUser } from "./state/authSlice";
 const App = () => {
-  const [addTask, setAddTask] = useState(false);
-  const [taskToEdit, setTaskToEdit] = useState(null);
   const dispatch = useDispatch<AppDispatch>();
   const { userData } = useSelector((state: RootState) => state.auth);
+  const { addTask } = useSelector((state: RootState) => state.todo);
 
   useEffect(() => {
     const storedData = localStorage.getItem("user");
@@ -50,13 +49,7 @@ const App = () => {
           <Route path="/signUp" element={<SignUp />} />
           <Route
             path="/home"
-            element={
-              userData ? (
-                <Home setAddTask={setAddTask} setTaskToEdit={setTaskToEdit} />
-              ) : (
-                <Navigate to="/signIn" />
-              )
-            }
+            element={userData ? <Home /> : <Navigate to="/signIn" />}
           >
             <Route index element={<AllTask />} />
             <Route path="inProgress" element={<InProgress />} />
@@ -69,11 +62,7 @@ const App = () => {
             className="absolute top-0 bottom-0 left-0 right-0
           inset-0 bg-[rgba(0,0,0,0.2)] flex justify-center items-center"
           >
-            <NewTaskModal
-              setAddTask={setAddTask}
-              taskToEdit={taskToEdit}
-              setTaskToEdit={setTaskToEdit}
-            />
+            <NewTaskModal />
           </div>
         )}
       </div>
