@@ -11,4 +11,6 @@ export interface TodoState {
   todos: Todo[];
   isLoading: boolean;
   error: null | string;
+  addTask: boolean;
+  taskToEdit: null | Todo;
 }

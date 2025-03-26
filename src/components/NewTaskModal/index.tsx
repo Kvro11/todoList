@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { addTodo, updateTodo } from "../../state/todoSlice";
-import { AppDispatch } from "../../state/store";
+import { AddTask, addTodo, EditTask, updateTodo } from "../../state/todoSlice";
+import { AppDispatch, RootState } from "../../state/store";
 
 import { IoClose } from "react-icons/io5";
 import { Todo } from "../../types/todoTypes";
 import { toast } from "react-toastify";
 
-const NewTaskModal = ({ setAddTask, taskToEdit, setTaskToEdit }: any) => {
+const NewTaskModal = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [importance, setImportance] = useState("");
+  const { taskToEdit } = useSelector((state: RootState) => state.todo);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -48,13 +49,14 @@ const NewTaskModal = ({ setAddTask, taskToEdit, setTaskToEdit }: any) => {
     setTitle("");
     setDescription("");
     setImportance("");
-    setAddTask(false);
-    setTaskToEdit(null);
+
+    dispatch(AddTask(false));
+    dispatch(EditTask(null));
   };
 
   const handleCloseModal = () => {
-    setAddTask(false);
-    setTaskToEdit(null);
+    dispatch(AddTask(false));
+    dispatch(EditTask(null));
   };
 
   useEffect(() => {
@@ -76,13 +78,14 @@ const NewTaskModal = ({ setAddTask, taskToEdit, setTaskToEdit }: any) => {
       onSubmit={handleTask}
       className="fixed top-[50%] left-[50%] translate-[-50%] w-[90%] min-[500px]:w-[70%] 
       sm:w-[27rem] h-fit bg-[whitesmoke] p-5 sm:p-10 rounded-lg shadow-lg shadow-black/20 
-      flex flex-col gap-5 sm:gap-8 font-custom-exo"
+      flex flex-col gap-5 sm:gap-8 font-custom-exo z-50"
     >
       <div className="flex justify-end text-3xl -m-2 sm:-m-5">
         <button
+          type="button"
+          onClick={handleCloseModal}
           className="cursor-pointer transition ease-in-out duration-200 hover:scale-90 
               hover:text-custom-red"
-          onClick={handleCloseModal}
         >
           <IoClose />
         </button>

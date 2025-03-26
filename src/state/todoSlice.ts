@@ -15,6 +15,8 @@ const initialState: TodoState = {
   todos: [],
   isLoading: false,
   error: null,
+  addTask: false,
+  taskToEdit: null,
 };
 
 const getUserFromState = (getState: any) => {
@@ -113,7 +115,14 @@ export const deleteTodo = createAsyncThunk(
 const todoSlice = createSlice({
   name: "todo",
   initialState,
-  reducers: {},
+  reducers: {
+    EditTask: (state, action) => {
+      state.taskToEdit = action.payload;
+    },
+    AddTask: (state, action) => {
+      state.addTask = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, (state) => {
@@ -158,4 +167,5 @@ const todoSlice = createSlice({
   },
 });
 
+export const { EditTask, AddTask } = todoSlice.actions;
 export default todoSlice.reducer;

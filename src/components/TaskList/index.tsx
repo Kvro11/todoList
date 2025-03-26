@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { deleteTodo, updateTodo } from "../../state/todoSlice";
+import {
+  AddTask,
+  deleteTodo,
+  EditTask,
+  updateTodo,
+} from "../../state/todoSlice";
 import { AppDispatch } from "../../state/store";
 import Error from "../Error";
 import useViewport from "../useViewport";
@@ -23,7 +28,7 @@ enum TitleLength {
   desktop = 18,
 }
 
-const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
+const TaskList = ({ todos, title }: any) => {
   const dispatch = useDispatch<AppDispatch>();
   const [priority, setPriority] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState(todos);
@@ -43,10 +48,10 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
   const handleEdit = (id: string) => {
     const taskToEdit = todos.find((task: any) => task.id === id);
     if (todos) {
-      setTaskToEdit(taskToEdit); // Now it's an object, not an array
+      dispatch(EditTask(taskToEdit)); // Now it's an object, not an array
     }
 
-    setAddTask(true);
+    dispatch(AddTask(true));
   };
 
   const handleUpdate = (id: string, isComplete: boolean) => {
@@ -73,7 +78,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
     <>
       <div className="w-full p-2 sm:p-12">
         <ToastContainer />
-        <div className="flex flex-col min-[500px]:flex-row sm:flex-row items-center justify-between mb-7 font-custom-exo">
+        <div className="flex flex-row items-center justify-between mb-7 font-custom-exo">
           <div className="flex gap-2 items-end">
             <h1 className="font-black text-[1.4rem] sm:text-4xl text-primary-blue ">
               {title}
@@ -98,7 +103,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
         </div>
         <div
           className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] 
-            min-[500px]:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 "
+            min-[500px]:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-10 "
         >
           {filteredTodos?.map((task: any) => (
             <div
@@ -117,7 +122,7 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
                   {task.title.length >
                     (isMobile ? TitleLength.mobile : TitleLength.desktop) && (
                     <div
-                      className="absolute left-0 top-full mt-1 w-full sm:w-max max-w-xs bg-gray-800 
+                      className="absolute left-0 top-0 z-10 mt-1 w-full sm:w-max max-w-xs bg-gray-800 
                     text-white text-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 
                       transition-opacity"
                     >
@@ -173,11 +178,13 @@ const TaskList = ({ todos, setTaskToEdit, setAddTask, title }: any) => {
           ))}
           {title === "Task List" && (
             <div
-              className="h-full min-h-[250px] sm:min-h-[350px] flex justify-center items-center 
-                shadow-custom-shadow transition ease-in-out hover:scale-95 rounded-lg"
-              onClick={() => setAddTask(true)}
+              className="h-full min-h-[250px] sm:min-h-[350px] flex flex-col justify-center 
+              items-center gap-3 shadow-custom-shadow transition ease-in-out hover:scale-95
+              rounded-lg text-custom-black-100 text-xl"
+              onClick={() => dispatch(AddTask(true))}
             >
-              <IoAdd className="text-8xl text-custom-black-100" />
+              <IoAdd className="text-8xl" />
+              <span>Add task</span>
             </div>
           )}
         </div>

@@ -36,17 +36,18 @@ const SignIn = () => {
       id: ProviderType.Google,
       name: "Google icon",
       img: googleIcon,
+      title: "Google Sign-in",
     },
-    {
-      id: ProviderType.Facebook,
-      name: "Facebook icon",
-      img: facebookIcon,
-    },
-    {
-      id: ProviderType.Twitter,
-      name: "Twitter icon",
-      img: twitterIcon,
-    },
+    // {
+    //   id: ProviderType.Facebook,
+    //   name: "Facebook icon",
+    //   img: facebookIcon,
+    // },
+    // {
+    //   id: ProviderType.Twitter,
+    //   name: "Twitter icon",
+    //   img: twitterIcon,
+    // },
   ];
 
   const handleSignIn = async (e: React.FormEvent) => {
@@ -132,8 +133,11 @@ const SignIn = () => {
                     key={btn.id}
                     type="button"
                     onClick={() => handleSocialSignIn({ providerType: btn.id })}
+                    className="flex items-center gap-3 border-2 py-1 px-4 rounded-full
+                    transition-transform ease-in-out delay-100 hover:scale-90"
                   >
                     <img src={btn.img} alt={btn.name} />
+                    <span>{btn.title}</span>
                   </button>
                 ))}
               </div>
