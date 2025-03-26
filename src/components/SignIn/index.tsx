@@ -11,8 +11,8 @@ import { SocialSignType } from "../../types/authTypes";
 import { RxRocket } from "react-icons/rx";
 import signInSvg from "../../assets/Auth/signIn.svg";
 import googleIcon from "../../assets/Auth/googleIcon.svg";
-import facebookIcon from "../../assets/Auth/facebookIcon.svg";
-import twitterIcon from "../../assets/Auth/twitterIcon.svg";
+// import facebookIcon from "../../assets/Auth/facebookIcon.svg";
+// import twitterIcon from "../../assets/Auth/twitterIcon.svg";
 import Loading from "../Loading";
 
 enum ProviderType {
