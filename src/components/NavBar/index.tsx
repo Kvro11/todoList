@@ -91,14 +91,15 @@ const NavBar = () => {
       >
         <RxHamburgerMenu />
       </button>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {navOpen && (
           <motion.div
-            initial={isMobile ? { right: "-100%", top: 0 } : {}}
-            animate={isMobile ? { right: 0, left: 0 } : {}}
-            exit={isMobile ? { right: "-100%" } : {}}
+            key="navbar"
+            initial={isMobile ? { opacity: 0, height: 0 } : {}}
+            animate={isMobile ? { opacity: 1, height: "100vh" } : {}}
+            exit={isMobile ? { opacity: 0, height: 0 } : {}}
             transition={isMobile ? { ease: "easeOut", duration: 0.5 } : {}}
-            className="absolute sm:static w-full h-screen sm:h-fit flex flex-col justify-center
+            className="absolute top-0 right-0 sm:static w-full h-screen sm:h-fit flex flex-col justify-center
              items-center sm:items-start text-custom-black-200 sm:text-white sm:mt-20 sm:pl-5 
              font-black bg-primary-blue"
           >
@@ -144,7 +145,7 @@ const NavBar = () => {
         )}
       </AnimatePresence>
       <span className="hidden sm:block ml-5 mb-3 text-[1rem] text-white mt-auto self-start">
-        &copy; 2025 Kvro TodoList
+        &copy; 2025 Taskly™
       </span>
     </div>
   );
