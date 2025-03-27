@@ -143,7 +143,12 @@ const SignIn = () => {
                     className="flex items-center gap-3 border-2 py-1 px-4 rounded-full
                     transition-transform ease-in-out delay-100 hover:scale-90"
                   >
-                    <img src={btn.img} alt={btn.name} />
+                    <img
+                      src={btn.img}
+                      alt={btn.name}
+                      width="auto"
+                      height="auto"
+                    />
                     <span>{btn.title}</span>
                   </button>
                 ))}
