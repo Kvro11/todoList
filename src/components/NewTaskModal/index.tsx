@@ -84,6 +84,7 @@ const NewTaskModal = () => {
         <button
           type="button"
           onClick={handleCloseModal}
+          aria-label="Close Button"
           className="cursor-pointer transition ease-in-out duration-200 hover:scale-90 
               hover:text-custom-red"
         >

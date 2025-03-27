@@ -86,6 +86,7 @@ const NavBar = () => {
       </div>
       <button
         onClick={() => setNavOpen(true)}
+        aria-label="Navbar Menu"
         className={`text-3xl text-white 
           ${showMenuIcon} ${navOpen ? "hidden" : "block"}`}
       >
@@ -103,7 +104,7 @@ const NavBar = () => {
              items-center sm:items-start text-custom-black-200 sm:text-white sm:mt-20 sm:pl-5 
              font-black bg-primary-blue"
           >
-            <button onClick={() => setNavOpen(false)}>
+            <button aria-label="Close Button" onClick={() => setNavOpen(false)}>
               <IoClose
                 className={`${showMenuIcon} absolute top-6 right-6 text-3xl ${
                   navOpen ? "block" : "hidden"
@@ -136,6 +137,7 @@ const NavBar = () => {
             <div className="mt-20">
               <button
                 onClick={handleLogout}
+                aria-label="Logout"
                 className="flex gap-5 text-xl items-center -ml-10 sm:-ml-0 sm:text-2xl cursor-pointer
                 transition-transform duration-200 ease-in-out hover:scale-90 hover:text-white"
               >
