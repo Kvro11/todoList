@@ -112,7 +112,7 @@ const TaskList = ({ todos, title }: any) => {
               flex flex-col gap-3 sm:gap-5 shadow-custom-shadow"
             >
               <div className="flex items-center justify-between">
-                <div className="relative group w-[70%] sm:w-[80%]">
+                <div className="relative group w-[70%]">
                   <span
                     className="font-bold text-xl sm:text-2xl text-custom-black-200 
                       truncate block"
@@ -122,7 +122,7 @@ const TaskList = ({ todos, title }: any) => {
                   {task.title.length >
                     (isMobile ? TitleLength.mobile : TitleLength.desktop) && (
                     <div
-                      className="absolute left-0 top-0 z-10 mt-1 w-full sm:w-max max-w-xs bg-gray-800 
+                      className="absolute -left-5 -top-12 z-10 mt-1 w-full sm:w-max max-w-xs bg-gray-800 
                     text-white text-sm p-2 rounded-lg opacity-0 group-hover:opacity-100 
                       transition-opacity"
                     >

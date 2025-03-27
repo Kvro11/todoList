@@ -1,8 +1,9 @@
 @import "tailwindcss";
+@import "./font.css";
 
 html,
 body {
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "JosefinSans", sans-serif;
   font-style: normal;
   font-display: swap;
 }
