@@ -93,7 +93,6 @@ const SignIn = () => {
             src={signInSvg}
             alt="Sign-in Icon"
             className="sm:w-[90%] mr-5"
-            loading="lazy"
             width="500"
             height="300"
           />
