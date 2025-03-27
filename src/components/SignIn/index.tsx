@@ -94,8 +94,8 @@ const SignIn = () => {
             alt="Sign-in Icon"
             className="sm:w-[90%] mr-5"
             loading="lazy"
-            width="90%"
-            height="auto"
+            width="500"
+            height="300"
           />
         </div>
 

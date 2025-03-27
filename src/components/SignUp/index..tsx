@@ -129,8 +129,8 @@ const SignUp = () => {
             className="sm:w-[90%] mr-5"
             alt="Sign-up Icon"
             loading="lazy"
-            width="90%"
-            height="auto"
+            width="500"
+            height="300"
           />
         </div>
       </div>
