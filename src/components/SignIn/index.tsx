@@ -89,7 +89,14 @@ const SignIn = () => {
           className="w-[80%] sm:w-[27%] h-fit sm:h-[77%] rounded-bl-2xl rounded-tl-2xl
         bg-gradient-to-b from-linear-blue-100 to-linear-blue-200 sm:flex justify-center items-center hidden"
         >
-          <img src={signInSvg} className="sm:w-[90%] mr-5" />
+          <img
+            src={signInSvg}
+            alt="Sign-in Icon"
+            className="sm:w-[90%] mr-5"
+            loading="lazy"
+            width="90%"
+            height="auto"
+          />
         </div>
 
         <div className="w-[80%] min-[500px]:w-[70%] sm:w-[27%] h-fit order-2 sm:order-1">
