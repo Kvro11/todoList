@@ -112,23 +112,25 @@ const NavBar = () => {
             </button>
             <ul className="sm:w-full flex flex-col gap-10">
               {tabList.map(({ name, icon, path }: tablistType, index) => (
-                <NavLink
-                  key={index}
-                  to={path}
-                  end={index === 0}
-                  onClick={handleNavLink}
-                  className={({ isActive }) =>
-                    `w-fit sm:w-full flex gap-5 items-center py-3 pr-1 sm:p-2 sm:pr-0 
+                <li>
+                  <NavLink
+                    key={index}
+                    to={path}
+                    end={index === 0}
+                    onClick={handleNavLink}
+                    className={({ isActive }) =>
+                      `w-fit sm:w-full flex gap-5 items-center py-3 pr-1 sm:p-2 sm:pr-0 
                    sm:rounded-l-2xl text-4xl transition-all duration-300 ${
                      isActive
                        ? "sm:bg-white text-white sm:text-primary-blue border-0"
                        : "sm:hover:bg-white sm:hover:text-primary-blue hover:text-white"
                    }`
-                  }
-                >
-                  {icon}
-                  <span className="text-xl sm:text-2xl">{name}</span>
-                </NavLink>
+                    }
+                  >
+                    {icon}
+                    <span className="text-xl sm:text-2xl">{name}</span>
+                  </NavLink>
+                </li>
               ))}
             </ul>
             <div className="mt-20">

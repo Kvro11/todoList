@@ -93,6 +93,7 @@ const TaskList = ({ todos, title }: any) => {
                 outline-none text-custom-black-100"
               onChange={(e) => setPriority(e.target.value)}
               value={priority}
+              aria-label="Select Importance"
             >
               <option value="all">All Task</option>
               <option value="high">High</option>
@@ -137,6 +138,7 @@ const TaskList = ({ todos, title }: any) => {
                 >
                   <button
                     onClick={() => handleEdit(task.id)}
+                    aria-label="Edit Button"
                     className="hover:scale-90 hover:text-green-600"
                   >
                     <FiEdit />
@@ -144,6 +146,7 @@ const TaskList = ({ todos, title }: any) => {
                   <button
                     className="hover:scale-90 hover:text-custom-red"
                     onClick={() => handleDelete(task.id)}
+                    aria-label="Delete Button"
                   >
                     <IoTrashOutline />
                   </button>
@@ -165,6 +168,7 @@ const TaskList = ({ todos, title }: any) => {
                 </span>
                 <button
                   onClick={() => handleUpdate(task.id, task.isComplete)}
+                  aria-label="Task Checker"
                   className="text-[1.2rem] sm:text-2xl"
                 >
                   {task.isComplete ? (
